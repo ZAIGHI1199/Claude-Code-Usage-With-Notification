@@ -126,4 +126,68 @@ in [#1](https://github.com/YigitSalihEmecen/claude-usage-on-menu-bar/pull/1).
 
 ## Windows
 
-A separate Windows implementation is under [`windows/`](windows/README.md). It uses the existing Python usage/authentication core with a PySide6 system-tray interface and Windows Credential Manager integration. See the Windows README for development and packaging instructions.
+## Windows
+
+The Windows implementation is available in the [`windows/`](windows/README.md) directory. It uses the existing Python usage and authentication core with a **PySide6 system-tray interface** and **Windows Credential Manager** for secure credential storage.
+
+### Features
+
+- Displays Claude usage directly in the Windows system tray.
+- Shows session usage, weekly limits, per-model limits and reset times.
+- Supports browser-based sign-in.
+- Reuses an existing Claude Code login when available.
+- Stores authentication credentials securely using Windows Credential Manager.
+- Runs in the background without requiring an open application window.
+
+### Requirements
+
+- Windows 10 or Windows 11.
+- Python 3.10 or later.
+- Claude Code installed and authenticated, or access to browser-based sign-in.
+- Required Python dependencies listed in `windows/requirements.txt`.
+
+### Run from source
+
+Clone the repository:
+
+```powershell
+git clone https://github.com/YigitSalihEmecen/claude-usage-on-menu-bar.git
+cd claude-usage-on-menu-bar/windows
+```
+
+Create and activate a virtual environment:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
+
+Install the dependencies:
+
+```powershell
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+For the application entry point, development instructions, packaging and troubleshooting, see the **[Windows README](windows/README.md)**.
+
+### Authentication
+
+Launch Claude Usage and select **Sign in with browser**. Complete authentication in Chrome or your default browser.
+
+If browser authentication does not open automatically, use the alternative sign-in instructions in the Windows application.
+
+If Claude Code is already authenticated on your computer, you can use **Use my Claude Code login** to reuse that authentication.
+
+### Security and credentials
+
+Authentication credentials are stored locally using Windows Credential Manager. They are not stored in the project directory or committed to the repository.
+
+### Troubleshooting
+
+- **Tray icon not visible:** Check the Windows system tray overflow area and enable Claude Usage in taskbar settings.
+- **Authentication problems:** Check that your browser can complete the sign-in flow and that the local callback is not blocked.
+- **No usage displayed:** Verify that Claude Code is installed and authenticated, or complete browser sign-in.
+- **Missing dependencies:** Activate the virtual environment and reinstall dependencies from `windows/requirements.txt`.
+
+For Windows-specific development and troubleshooting, see [`windows/README.md`](windows/README.md).
